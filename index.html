@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SVR</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- button  -->
+    <div class="toolbar">
+        <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        <button onclick="exportPDF()">Export PDF</button>
+        <button onclick="exportPNG()">Export PNG</button>
+    </div>
+
+    <!-- akhir button  -->
+    <!-- paper a4 -->
+    <div class="paper">
+
+        <!--Ini kop surat-->
+        <div class="kop-surat">
+            <div class="kop-left">
+                <img src="./images/logo-edavos.png" alt="Logo-Edavos">
+            </div>
+
+            <div class="kop-right">
+                <div class="company-name">
+                    PT Expert Data Voice Solution
+                </div>
+                <div class="company-address">
+                    Ruko Puri Botanical H8 No 15. Jalan joglo raya RT 007 RW 001, Joglo, Kembangan, Jakarta Barat -
+                    11640.<br />
+                    Telp: +62811 8037860 | WA: +62811 1037860 | E-mail: sales@edavos.com | https://edavos.com
+                </div>
+            </div>
+        </div>
+        <div class="kop-line">
+
+        </div>
+
+        <!--Akhir Kop Surat-->
+
+
+        <div class="title">
+            SITE VISIT REPORT (SVR)
+        </div>
+
+        <!--Section client and location-->
+        <div class="section-title">
+            1. Client and Location
+        </div>
+
+        <table class="svr-table">
+            <tr>
+                <th style="width : 33%">Client Name</th>
+                <th style="width : 33%">Site Name</th>
+                <th style="width : 34%">Date</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="input-field" name="client-name"></td>
+                <td><input type="text" class="input-field" name="site-name"></td>
+                <td><input type="text" class="input-field" name="date"></td>
+            </tr>
+        </table>
+
+        <table class="svr-table">
+            <tr>
+                <th style="width : 33%">Contact Name</th>
+                <th style="width : 33%">Contact Number</th>
+                <th style="width : 34%">Site Address</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="input-field" name="contact-name"></td>
+                <td><input type="text" class="input-field" name="contact-number"></td>
+                <td><input type="text" class="input-field" name="site-address"></td>
+            </tr>
+        </table>
+        <!--Akhir Section client and location-->
+
+        <!--Section Job details and Report-->
+        <div class="section-title">
+            2. Job Details and Report
+        </div>
+        <div class="sub-section-title">
+            Time Visit :
+        </div>
+
+        <table class="svr-table">
+            <tr>
+                <th style="width : 25%">Arrival time</th>
+                <th style="width : 25%">Start</th>
+                <th style="width : 25%">End</th>
+                <th style="width : 25%">Departure Time</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="input-field" name="arrival-time"></td>
+                <td><input type="text" class="input-field" name="start"></td>
+                <td><input type="text" class="input-field" name="end"></td>
+                <td><input type="text" class="input-field" name="depature-time"></td>
+            </tr>
+        </table>
+
+        <div class="sub-section-title">
+            Overtime :
+        </div>
+
+        <table class="svr-table">
+            <tr>
+                <th style="width : 33%">Arrival time</th>
+                <th style="width : 33%">Start</th>
+                <th style="width : 34%">Duration</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="input-field" name="arrival-time"></td>
+                <td><input type="text" class="input-field" name="start"></td>
+                <td><input type="text" class="input-field" name="duration"></td>
+            </tr>
+        </table>
+
+        <div class="sub-section-title">
+            Engineer Report (What exactly have you done?)
+        </div>
+
+        <div class="report-box">
+            <textarea name="report-input"></textarea>
+        </div>
+
+        <!--Akhir Section Job details and Report-->
+
+        <!--Section Signature & Verification-->
+        <div class="section-title">
+            3. Signature and Verfication
+        </div>
+        <table class="svr-signature-table">
+            <tr>
+                <th style="width : 50%">Client Name</th>
+                <th style="width : 50%">Client Signature</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="input-field"></td>
+                <td>
+                    <div class="signature-preview" onclick="openSignature('client')">
+                        <img id="client-preview" />
+                        <span class="placeholder">Click to Sign</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="svr-signature-table">
+            <tr>
+                <th style="width : 50%">Engineer Name</th>
+                <th style="width : 50%">Engineer Signature</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="input-field"></td>
+                <td>
+                    <div class="signature-preview" onclick="openSignature('engineer')">
+                        <img id="engineer-preview" />
+                        <span class="placeholder">Click to Sign</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!--Akhir Section Signature & Verification-->
+
+
+    </div>
+    <!-- akhir paper a4  -->
+
+
+    <!-- ini untuk moda sign  -->
+    <div id="signature-modal" class="modal">
+        <div class="modal-content">
+            <h3>Draw Signature</h3>
+
+            <canvas id="signature-canvas"></canvas>
+
+            <div class="modal-buttons">
+                <button onclick="clearSignature()">Clear</button>
+                <button onclick="saveSignature()">Save</button>
+                <button onclick="closeSignature()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/signature.js"></script>
+
+    <!-- akhir modal sign  -->
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+body {
+    margin: 0;
+    background: #e5e5e5;
+    padding: 0;
+}
+
+.toolbar {
+    width: 800px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    height: 50px;
+    width: 100px;
+    margin: 10px 10px;
+}
+
+.paper {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    margin: auto;
+    padding: 1cm 2cm 1cm 2cm;
+    box-sizing: border-box;
+    /* font-size: 16px; */
+    font-family: Arial;
+}
+
+.kop-surat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kop-left img {
+    width: 3cm;
+}
+
+.kop-right {
+    text-align: center;
+}
+
+.company-name {
+    font-size: 25px;
+    font-weight: bold;
+    /* margin: 5px; */
+}
+
+.company-address {
+    font-size: 8px;
+}
+
+.kop-line {
+    border-bottom: 2px solid;
+    margin: 5px 0px 5px 0px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5px 0px 5px 0px;
+    /* background-color: red; */
+}
+
+.sub-section-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5px 0px 5px 0px;
+}
+
+.svr-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.svr-table th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 3px;
+    background-color: rgb(188, 184, 181);
+}
+
+.svr-table td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+
+}
+
+.svr-signature-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.svr-signature-table th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 2px;
+}
+
+.svr-signature-table td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 0px;
+    height: 100px;
+
+}
+
+.report-box {
+    border: 1px solid;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+}
+
+.input-field {
+    width: 90%;
+    height: 25px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    text-align: center;
+    background-color: red;
+}
+
+
+textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;/* supaya tidak bisa ditarik */
+    outline: none;
+    font-size: 13px;
+    padding: 8px;
+    box-sizing: border-box;
+
+}
+
+/* .signature-preview {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+  padding: 0;
+}
+
+.signature-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  display: none;
+  background-color: red;
+  padding: 0;
+}
+
+
+.signature-preview .placeholder {
+  color: gray;
+  font-size: 14px;
+} */
+
+.signature-preview {
+  width: 100%;
+  height: 100%;              /* tinggi fix */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;           /* penting */
+  padding: 0;
+}
+
+.signature-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;           /* 🔥 isi penuh */
+  display: none;
+  background-color: turquoise;
+}
+
+.signature-preview .placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+  font-size: 14px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 10px;
+  width: 100%;
+  max-width: 800px;
+  background-color: antiquewhite;
+}
+
+#signature-canvas {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  background-color: red;
+}
+
+.modal-buttons {
+  margin-top: 10px;
+  text-align: right;
+}
+
+
+
+@media print {
+  .toolbar {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .paper {
+    margin: 0;
+    box-shadow: none;
+  }
+}
