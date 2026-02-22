@@ -186,7 +186,7 @@ async function exportPDF() {
     useCORS: true
   });
 
-  const imgData = canvasExport.toDataURL("image/jpeg", 0.85);
+  const imgData = canvasExport.toDataURL("image/jpeg", 0.8);
 
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF("p", "mm", "a4");
