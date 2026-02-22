@@ -122,6 +122,7 @@ button {
     height: 200px;
     padding: 0;
     margin: 0;
+    display: block;
 }
 
 .input-field {
@@ -144,6 +145,7 @@ textarea {
     font-size: 13px;
     padding: 8px;
     box-sizing: border-box;
+    
 
 }
 

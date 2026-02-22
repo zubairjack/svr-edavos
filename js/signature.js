@@ -157,36 +157,95 @@ function clearAll() {
 // akhir function clear all 
 
 // export jpg n pdf 
+// async function exportPDF() {
+
+//   const paper = document.querySelector(".paper");
+
+//   // Ubah semua canvas signature menjadi image sementara
+//   const canvases = document.querySelectorAll("canvas");
+//   const tempImages = [];
+
+//   canvases.forEach(canvas => {
+//     const img = document.createElement("img");
+//     img.src = canvas.toDataURL("image/png");
+//     img.style.width = canvas.style.width || canvas.width + "px";
+//     img.style.height = canvas.style.height || canvas.height + "px";
+
+//     // 🔥 pakai ukuran visual asli
+//     // img.style.width = canvas.offsetWidth + "px";
+//     // img.style.height = canvas.offsetHeight + "px";
+
+//     canvas.style.display = "none";
+//     canvas.parentNode.insertBefore(img, canvas);
+
+//     tempImages.push({ canvas, img });
+//   });
+
+//   const canvasExport = await html2canvas(paper, {
+//     scale: 3,
+//     useCORS: true
+//   });
+
+//   const imgData = canvasExport.toDataURL("image/jpeg", 0.8);
+
+//   const { jsPDF } = window.jspdf;
+//   const pdf = new jsPDF("p", "mm", "a4");
+
+//   const imgWidth = 210;
+//   const imgHeight = (canvasExport.height * imgWidth) / canvasExport.width;
+
+//   pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+//   pdf.save("SVR_Report.pdf");
+
+//   // Balikkan canvas seperti semula
+//   tempImages.forEach(item => {
+//     item.img.remove();
+//     item.canvas.style.display = "block";
+//   });
+// }
+
 async function exportPDF() {
 
   const paper = document.querySelector(".paper");
 
-  // Ubah semua canvas signature menjadi image sementara
-  const canvases = document.querySelectorAll("canvas");
-  const tempImages = [];
+  // ===============================
+  // 1️⃣ FIX TEXTAREA (SUPAYA ENTER TIDAK HILANG)
+  // ===============================
+  const textareas = document.querySelectorAll("textarea");
+  const tempDivs = [];
 
-  canvases.forEach(canvas => {
-    const img = document.createElement("img");
-    img.src = canvas.toDataURL("image/png");
-    img.style.width = canvas.style.width || canvas.width + "px";
-    img.style.height = canvas.style.height || canvas.height + "px";
+  textareas.forEach(textarea => {
 
-    // 🔥 pakai ukuran visual asli
-    // img.style.width = canvas.offsetWidth + "px";
-    // img.style.height = canvas.offsetHeight + "px";
+    const div = document.createElement("div");
 
-    canvas.style.display = "none";
-    canvas.parentNode.insertBefore(img, canvas);
+    div.style.whiteSpace = "pre-wrap";
+    div.style.wordBreak = "break-word";
+    div.style.fontSize = getComputedStyle(textarea).fontSize;
+    div.style.fontFamily = getComputedStyle(textarea).fontFamily;
+    div.style.padding = getComputedStyle(textarea).padding;
+    div.style.height = textarea.offsetHeight + "px";
+    div.style.boxSizing = "border-box";
+    div.style.border = "none";
 
-    tempImages.push({ canvas, img });
+    div.innerHTML = textarea.value.replace(/\n/g, "<br>");
+
+    textarea.style.display = "none";
+    textarea.parentNode.insertBefore(div, textarea);
+
+    tempDivs.push({ textarea, div });
   });
 
+
+  // ===============================
+  // 2️⃣ EXPORT DENGAN RESOLUSI STABIL
+  // ===============================
   const canvasExport = await html2canvas(paper, {
-    scale: 3,
-    useCORS: true
+    scale: 3,               // 🔥 cukup tajam tapi tidak 16MB
+    useCORS: true,
+    backgroundColor: "#ffffff"
   });
 
-  const imgData = canvasExport.toDataURL("image/jpeg", 0.8);
+  const imgData = canvasExport.toDataURL("image/jpeg", 0.85);
 
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF("p", "mm", "a4");
@@ -197,11 +256,15 @@ async function exportPDF() {
   pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
   pdf.save("SVR_Report.pdf");
 
-  // Balikkan canvas seperti semula
-  tempImages.forEach(item => {
-    item.img.remove();
-    item.canvas.style.display = "block";
+
+  // ===============================
+  // 3️⃣ KEMBALIKAN TEXTAREA
+  // ===============================
+  tempDivs.forEach(item => {
+    item.div.remove();
+    item.textarea.style.display = "block";
   });
+
 }
 
 window.exportPNG = async function () {
