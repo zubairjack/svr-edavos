@@ -313,3 +313,4 @@ window.exportPNG = async function () {
   link.click();
 };
 // akhirexport jpg n pdf 
+

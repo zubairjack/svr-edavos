@@ -57,6 +57,11 @@ button {
     margin: 5px 0px 5px 0px;
 }
 
+.section-line {
+    border-bottom: 1px solid;
+    margin: 15px 0px 5px 0px;
+}
+
 .title {
     text-align: center;
     font-weight: bold;
@@ -67,14 +72,25 @@ button {
 .section-title {
     font-weight: bold;
     font-size: 16px;
-    margin: 5px 0px 5px 0px;
+    margin: 10px 0px 10px 0px;
     /* background-color: red; */
+}
+
+.description-text {
+    margin: 5px 0 20px 0; /* Memberi jarak atas dan bawah */
+}
+
+.description-text p {
+    margin: 1px 0; /* Jarak antar baris paragraf */
+    font-size: 16px;
+    line-height: 1.5; /* Membuat teks lebih mudah dibaca */
+    color: #333; /* Warna abu gelap agar tidak terlalu kontras tajam */
 }
 
 .sub-section-title {
     font-weight: bold;
     font-size: 16px;
-    margin: 5px 0px 5px 0px;
+    margin: 15px 0px 15px 0px;
 }
 
 .svr-table {

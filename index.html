@@ -43,7 +43,7 @@
 
 
         <div class="title">
-            SITE VISIT REPORT (SVR)
+            SITE ATTENDANCE CONFIRMATION (SAC)
         </div>
 
         <!--Section client and location-->
@@ -79,8 +79,11 @@
         <!--Akhir Section client and location-->
 
         <!--Section Job details and Report-->
+        <div class="section-line">
+
+        </div>
         <div class="section-title">
-            2. Job Details and Report
+            2. Attendance Details
         </div>
         <div class="sub-section-title">
             Time Visit :
@@ -97,7 +100,7 @@
                 <td><input type="text" class="input-field" name="arrival-time"></td>
                 <td><input type="text" class="input-field" name="start"></td>
                 <td><input type="text" class="input-field" name="end"></td>
-                <td><input type="text" class="input-field" name="depature-time"></td>
+                <td><input type="text" class="input-field" name="departure-time"></td>
             </tr>
         </table>
 
@@ -119,26 +122,35 @@
         </table>
 
         <div class="sub-section-title">
-            Engineer Report (What exactly have you done?)
+            Purpose of Visit:
         </div>
 
-        <div class="report-box">
+        <!-- <div class="report-box">
             <textarea name="report-input"></textarea>
-        </div>
+        </div> -->
 
         <!--Akhir Section Job details and Report-->
 
         <!--Section Signature & Verification-->
+        <div class="section-line">
+
+        </div>
         <div class="section-title">
             3. Signature and Verfication
         </div>
+        <div class="description-text">
+            <p>This document confirms that our engineer visited your site.</p>
+            <p>It is only used as proof of attendance.</p>
+            <p>Details of the work performed will be shared separately by email or service report.</p>
+        </div>
+
         <table class="svr-signature-table">
             <tr>
-                <th style="width : 50%">Client Name</th>
-                <th style="width : 50%">Client Signature</th>
+                <th style="width : 50%">Customer/Site Representative Name</th>
+                <th style="width : 50%">Customer/Site Representative Signature</th>
             </tr>
             <tr>
-                <td><input type="text" class="input-field"></td>
+                <td><input type="text" class="input-field" name="client-sign-name"></td>
                 <td>
                     <div class="signature-preview" onclick="openSignature('client')">
                         <img id="client-preview" />
@@ -154,7 +166,7 @@
                 <th style="width : 50%">Engineer Signature</th>
             </tr>
             <tr>
-                <td><input type="text" class="input-field"></td>
+                <td><input type="text" class="input-field" name="engineer-sign-name"></td>
                 <td>
                     <div class="signature-preview" onclick="openSignature('engineer')">
                         <img id="engineer-preview" />
