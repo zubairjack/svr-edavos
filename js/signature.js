@@ -156,7 +156,6 @@ function clearAll() {
 }
 // akhir function clear all 
 
-// export jpg n pdf 
 // async function exportPDF() {
 
 //   const paper = document.querySelector(".paper");
@@ -203,6 +202,24 @@ function clearAll() {
 //     item.canvas.style.display = "block";
 //   });
 // }
+
+// function rename file
+function generateFileName() {
+
+  const client =
+    document.querySelector('[name="client-name"]').value.trim() || "Client";
+
+  const date =
+    document.querySelector('[name="date"]').value.trim() ||
+    new Date().toISOString().split('T')[0];
+
+  return `SAC_${client}_${date}`
+    .replace(/\s+/g, "_")
+    .replace(/[^\w\-]/g, "");
+}
+// akhir function rename file
+
+// export jpg n pdf 
 
 async function exportPDF() {
 
@@ -254,7 +271,8 @@ async function exportPDF() {
   const imgHeight = (canvasExport.height * imgWidth) / canvasExport.width;
 
   pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
-  pdf.save("SVR_Report.pdf");
+  //pdf.save("SVR_Report.pdf");
+  pdf.save(generateFileName() + ".pdf");
 
 
   // ===============================
@@ -308,7 +326,8 @@ window.exportPNG = async function () {
 
   // Download PNG
   const link = document.createElement("a");
-  link.download = "SVR_Report_A4.png";
+  // link.download = "SVR_Report_A4.png";
+  link.download = generateFileName() + ".png";
   link.href = finalCanvas.toDataURL("image/png");
   link.click();
 };
